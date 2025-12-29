@@ -1,4 +1,4 @@
-const fibs = function (input) {
+/*const fibs = function (input) {
   arr1 = [0];
   arr2 = [0, 1];
   if (input === 1) return arr1;
@@ -10,4 +10,16 @@ const fibs = function (input) {
     }
     return arr2;
   }
+};*/
+const fibsRec = function (input) {
+  const arr1 = [0];
+  const arr2 = [0, 1];
+  if (input === 1) return arr1;
+  if (input === 2) return arr2;
+  
+    const nextValue = fibsRec(input - 1);
+    const ind = nextValue[nextValue.length - 1] + nextValue[nextValue.length - 2];
+    nextValue.push(ind);
+    return nextValue;
+  
 };
