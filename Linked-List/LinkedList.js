@@ -62,7 +62,31 @@ function linkedlist () {
         return console.log(current);
     }
     function pop() {
-
+        if (head === null){
+            return;
+        }else {
+            console.log(head.value);
+            head = head.nextNode;
+        }
+    }
+    function contains(value) {
+        if (head === null) {
+            return ;
+        }
+        let current = head;
+        while(current.nextNode !== null) {
+            if (current.value === value) {
+                return console.log(true);
+            }
+            current = current.nextNode;
+        }
+        return console.log(false);
+    }
+    function findIndex(value) {
+        if(head === null) {
+            return;
+        }
+        
     }
     return {
         heads,
@@ -72,8 +96,8 @@ function linkedlist () {
         tail,
         at,
        pop,
-       // contains,
-       // findIndex,
+       contains,
+       findIndex,
       //  toString,
       //  insertAt,
       //  removeAt,
@@ -86,11 +110,5 @@ class node {//this is used to create nodes and related actions
     }
 }
 // example uses class syntax - adjust as necessary
-const list = new linkedlist();
-list.append("dog");
-list.append("cat");
-list.append("parrot");
-list.append("hamster");
-list.append("snake");
-list.append("turtle");
-list.at(7);
+
+export{linkedlist};
