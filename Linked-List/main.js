@@ -6,4 +6,4 @@ list.append("parrot");
 list.append("hamster");
 list.append("snake");
 list.append("turtle");
-list.contains("turtlea");
+console.log(list.toString());

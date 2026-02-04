@@ -74,7 +74,7 @@ function linkedlist () {
             return ;
         }
         let current = head;
-        while(current.nextNode !== null) {
+        while(current !== null) {
             if (current.value === value) {
                 return console.log(true);
             }
@@ -83,11 +83,36 @@ function linkedlist () {
         return console.log(false);
     }
     function findIndex(value) {
+        let size = 0;
         if(head === null) {
             return;
         }
-        
+        let current = head;
+        while(current !== null) {
+            if (current.value === value) {
+                return console.log( `Index : ${size}`);
+            }
+            current = current.nextNode;
+            size = size + 1;
+        }
+        return console.log("-1");
     }
+    function toString() {
+    if (head === null) {
+        return ;
+    }
+
+    let current = head;
+    let result = "";
+
+    while (current !== null) {
+        result += `( ${current.value} ) -> `;
+        current = current.nextNode;
+    }
+
+    result += "null";
+    return result;
+}
     return {
         heads,
         append,
@@ -98,9 +123,7 @@ function linkedlist () {
        pop,
        contains,
        findIndex,
-      //  toString,
-      //  insertAt,
-      //  removeAt,
+        toString,
     };
 }
 class node {//this is used to create nodes and related actions
