@@ -36,15 +36,42 @@ function linkedlist () {
         }
         return console.log(size);
     }
-    
+    function tail() {
+        if (head === null) {
+            return;
+        }
+        let current = head;
+        while(current.nextNode !== null) {
+            current = current.nextNode;
+        }
+        return console.log(current);
+    }
+    function at(index) {
+        let size = 0;
+        if (head === null) {
+            return ;
+        }
+        let current = head; 
+        while(index !== size) {
+            current = current.nextNode;
+            if (current.nextNode === null) {
+                return console.log(current.nextNode);
+            }
+            size = size + 1;
+        }
+        return console.log(current);
+    }
+    function pop() {
+
+    }
     return {
         heads,
         append,
         prepend,
         size,
         tail,
-        //at,
-       // pop,
+        at,
+       pop,
        // contains,
        // findIndex,
       //  toString,
@@ -66,4 +93,4 @@ list.append("parrot");
 list.append("hamster");
 list.append("snake");
 list.append("turtle");
-list.size();
+list.at(7);
