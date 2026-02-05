@@ -148,6 +148,5 @@ function HashMap () {
         values,
         entries,
     }
-
 }
 export{HashMap};
