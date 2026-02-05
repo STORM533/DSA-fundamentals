@@ -1,6 +1,7 @@
 function HashMap () {
     let loadFactor = 0.75;
     let capacity = 16;
+    let size = 0;
     let bucket = new Array(capacity);
     function hash(key) {
         let hashCode = 0;
@@ -11,8 +12,21 @@ function HashMap () {
         }
         return hashCode;
     }
-     function resize () {
-        
+    function resize () {
+        let oldBucket = bucket;
+        capacity = capacity*2;
+        bucket = new Array(capacity);
+        for (let i = 0;i<oldBucket.length;i++) {
+            if (!oldBucket[i]) continue;
+            for(let pair of oldBucket[i]) {
+                const Index = hash(pair[0]);
+                if(!bucket[Index]) {
+                    bucket[Index] = [];
+                }
+                bucket[Index].push(pair);
+                
+            }
+        }
     }
     function set(key,value) {
         const Index = hash(key);
@@ -30,6 +44,10 @@ function HashMap () {
             }
         }
         bucket[Index].push([key,value]);
+        size++;
+        if(capacity*loadFactor<size) {
+            resize();
+        }
     }  
     function get(key) {
     const Index = hash(key);
@@ -50,6 +68,7 @@ function HashMap () {
         }
         for(let pair of bucket[Index]) {
             if(pair[0] === key) {
+                console.log(Index);
                 return true;
             }
         }
@@ -61,8 +80,10 @@ function HashMap () {
             throw new Error("Trying to access index out of bounds");
         }
         for (let i = 0;i<bucket[Index].length;i++){
+            if (!bucket[Index]) return false;
             if(bucket[Index][i][0]===key){
-                bucket[Index].splice(bucket[Index][i]);
+                bucket[Index].splice(i,1);
+                size--;
                 return true;
             }
         }
