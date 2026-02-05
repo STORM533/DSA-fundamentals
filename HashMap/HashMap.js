@@ -69,7 +69,15 @@ function HashMap () {
         return false;
     }
     function length() {
-
+        let count = 0;
+        for(let i=0;i<bucket.length;i++) {
+            if(!bucket[i]) continue;
+            count = count + bucket[i].length;
+        }
+        return count;
+    }
+    function clear() {
+        return bucket = new Array(capacity);
     }
     return {
         hash,
@@ -78,6 +86,10 @@ function HashMap () {
         has,
         remove,
         length,
+        clear,
+        keys,
+        values,
+        entries,
     }
 
 }
