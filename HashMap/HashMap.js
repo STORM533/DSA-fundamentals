@@ -11,6 +11,9 @@ function HashMap () {
         }
         return hashCode;
     }
+     function resize () {
+        
+    }
     function set(key,value) {
         const Index = hash(key);
         if (Index < 0 || Index >= bucket.length) {
@@ -27,10 +30,7 @@ function HashMap () {
             }
         }
         bucket[Index].push([key,value]);
-    }
-    function resize () {
-
-    }
+    }  
     function get(key) {
     const Index = hash(key);
         if (Index < 0 || Index >= bucket.length) {
@@ -78,6 +78,42 @@ function HashMap () {
     }
     function clear() {
         return bucket = new Array(capacity);
+    }
+    function keys() {
+        let arr = [];
+        for(let i = 0;i<bucket.length;i++) {
+            if(!(bucket[i] === undefined)) {
+                for(let pair of bucket[i]){
+                    arr.push(pair[0]);
+                }
+            }
+            
+        }
+        return arr;
+    }
+    function values () {
+        let arr = [];
+        for(let i = 0;i<bucket.length;i++) {
+            if(!(bucket[i] === undefined)) {
+                for(let pair of bucket[i]){
+                    arr.push(pair[1]);
+                }
+            }
+            
+        }
+        return arr;
+    }
+    function entries() {
+        let arr = [];
+        for(let i = 0;i<bucket.length;i++) {
+            if(!(bucket[i] === undefined)) {
+                for(let pair of bucket[i]){
+                    arr.push(pair);
+                }
+            }
+            
+        }
+        return arr;
     }
     return {
         hash,
