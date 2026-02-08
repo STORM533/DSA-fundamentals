@@ -39,3 +39,4 @@ function merge(input1, input2) {
 }
 
 console.log(mergerSort([4, 2, 6, 7, 1]));
+export{mergerSort};
