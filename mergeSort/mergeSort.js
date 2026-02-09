@@ -1,10 +1,8 @@
 const mergerSort = function (input) {
-  console.log("sup");
-  console.log(input);
   if (!Array.isArray(input)) {
-    return console.log("Wrong input dawg");
+    throw new TypeError("enter array!!!");
   }
-  if (input.length === 1) {
+  if (input.length <= 1) {
     return input;
   }
   if (input.length > 1) {
@@ -37,6 +35,4 @@ function merge(input1, input2) {
   }
   return C;
 }
-
-console.log(mergerSort([4, 2, 6, 7, 1]));
 export{mergerSort};
