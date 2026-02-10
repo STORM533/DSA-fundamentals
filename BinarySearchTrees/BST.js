@@ -1,4 +1,7 @@
 import { mergerSort } from "../mergeSort/mergeSort.js";
+//every point is a node in tree remember
+//use the node to do anything
+
 class Node {
     constructor(data = null) {
         this.data = data;
@@ -50,11 +53,28 @@ function Tree(arr) {
             }
         }
         return false;
-        
-        
     }
     function insert(value) {
-
+        function search(node){
+            if(value<node.data) {
+                if(node.left === null) {
+                    return node.left = new Node(value);
+                }else {
+                    search(node.left);
+                }
+            }else {
+                if(node.right === null) {
+                    return node.right = new Node(value);
+                }else{
+                    search(node.right);
+                }
+            }
+        }
+        if(root  === null) {
+            root = new Node(value);
+        }else{
+            search(root);
+        }
     }
     function deleteItem(value) {
 
