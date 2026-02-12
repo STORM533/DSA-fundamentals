@@ -1,11 +1,11 @@
 import { Tree } from "./BST.js";
-const test = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+const test = Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324,54,2,789,68,69]);
 test.prettyPrint(test.root);
 console.log("");
 console.log("");
 console.log("");
 console.log("")
-test.deleteItem(67);
+test.deleteItem(5);
 console.log("");
 console.log("");
 console.log("");

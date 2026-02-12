@@ -78,74 +78,31 @@ function Tree(arr) {
             search(root);
         }
     }
-    function deleteItem(value) {
+    function deleteItem(node,value) {
         function inOrderSuccessor(node) {
-            if (!node) return null;
             let current = node;
-        while (current.left) {
-            current = current.left;
-        }
-        let successor = current;
-        return successor;
-        }
-        function search(nodes){
-            if (nodes === null) return;
-            if(value<nodes.data) {
-                if(nodes.left&&nodes.left.data === value) {
-                    if(nodes.left.left === null && nodes.left.right === null){
-                        return nodes.left = null;
-                    }
-                    if(nodes.left.left!==null && nodes.left.right!==null){
-                        let successor =  inOrderSuccessor(nodes.left.right);
-                        let temp = nodes.left.data;
-                        nodes.left.data = successor.data;
-                        successor.data = temp;         
-                        return;         
-                    }
-                    if(nodes.left.left !== null && nodes.left.right === null){
-                        nodes.left = nodes.left.left;
-                        return;
-                    }else {
-                        nodes.left = nodes.left.right;
-                        return; 
-                    }
-                } else {
-                    search(nodes.left);
-                }
-            }else{
-                if(nodes.right&&nodes.right.data===value) {
-                    if(nodes.right.left === null && nodes.right.right === null){
-                        return nodes.right = null;
-                    }
-                    if(nodes.right.right!==null && nodes.right.left !== null){
-                        let successor =  inOrderSuccessor(nodes.right.right);
-                        let temp = nodes.right.data;
-                        nodes.right.data = successor.data;
-                        successor.data = temp; 
-                        return;                 
-                    }
-                    if(nodes.right.left === null && nodes.right.right !== null) {
-                        nodes.right = nodes.right.right;
-                        return; 
-                    }else {
-                        nodes.right = nodes.right.left;
-                        return;
-                    }
-                }else{
-                    search(nodes.right);
-                }                
+            while (current.left) {
+                current = current.left;
             }
+            return current;
         }
-        if(root.data === value) {
-            if(root.left === null && root.right === null) {
-                root.data = null;
-                root.left = null;
-                root.right = null;
-                return;
-            }
+        if(!node) return null;
+        if(value<node.data) {
+            node.left = deleteItem(node.left,value);
+        }else if (value>node.data){
+            node.right = deleteItem(node.right,value);
         }else {
-            search(root);
+            if(!node.left&&!node.right) return null;
+            if(!node.left)return node.right;
+            if(!node.right)return node.left;
+            let successor = inOrderSuccessor(node.right);
+            node.data = successor.data;
+            node.right = deleteItem(node.right,successor.data);
         }
+        return node;
+    }
+    function levelOrderForEach(cb) {
+        
     }
     return {
         root,
