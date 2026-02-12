@@ -101,8 +101,19 @@ function Tree(arr) {
         }
         return node;
     }
-    function levelOrderForEach(cb) {
-        
+    function levelOrderForEach(callback) {
+        if (typeof callback !== "function") {
+            throw new Error("A callback function is required");
+        }
+        if (!this.root) return;
+        const queue = [];
+        queue.push(this.root);
+        while (queue.length > 0) {
+        const current = queue.shift();
+        callback(current.data); // pass value, not node
+        if (current.left) queue.push(current.left);
+        if (current.right) queue.push(current.right);
+        }
     }
     return {
         root,
@@ -110,6 +121,8 @@ function Tree(arr) {
         deleteItem,
         includes,
         insert,
+        levelOrderForEach,
+
     }
 }
 

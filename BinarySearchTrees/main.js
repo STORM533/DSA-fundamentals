@@ -5,12 +5,13 @@ console.log("");
 console.log("");
 console.log("");
 console.log("")
-test.deleteItem(5);
+test.deleteItem(test.root,23);
 console.log("");
 console.log("");
 console.log("");
 console.log("");
 test.prettyPrint(test.root);
+
 //pretty print is just a function that [prints] 
 //it does not build the tree [the root which calls buildTree does building]
 //thats why we need to return [root]
