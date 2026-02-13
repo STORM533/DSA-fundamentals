@@ -115,13 +115,82 @@ function Tree(arr) {
         if (current.right) queue.push(current.right);
         }
     }
+    function inOrderDorEach(callback) {
+        if(typeof callback !== "function"){
+            throw new Error("callback must be provided");
+        }
+        function traverse(node) {
+            if(!node) return;
+            traverse(node.left);
+            callback(node.data);
+            traverse(node.right);
+        }
+        traverse(this.root);
+    }
+    function preOrderForEach(callback) {
+        if(typeof callback !== "function"){
+            throw new Error("callback must be provided");
+        }
+        function traverse(node) {
+            if(!node) return;
+            callback(node.data);
+            traverse(node.left);
+            traverse(node.right);
+        }
+        traverse(this.root);
+    }
+    function postOrderForEach(callback) {
+        if(typeof callback !== "function"){
+            throw new Error("callback must be provided");
+        }
+        function traverse(node) {
+            if(!node) return;
+            traverse(node.left);
+            traverse(node.right);
+            callback(node.data);
+            
+        }
+        traverse(this.root);
+    }
+    function height(value) {
+        function findNode(node,value){
+            if(!node) return null;
+            if(node.data === value) return node;
+            if(value<node.data){
+                return findNode(node.left,value);
+            }else if(value>node.data) {
+                return findNode(node.right,value);
+            }
+        }
+        const target = findNode(this.root,value);
+            if(!target) return undefined;
+        function computeHeight(node){
+            if(!node)return -1;
+            const leftHeight = computeHeight(node.left);
+            const rightHeight = computeHeight(node.right);
+            return Math.max(leftHeight,rightHeight)+1;
+        }
+        return computeHeight(target);
+    }
+    function depth(value) {
+
+    }
+    function isBalanced() {
+
+    }
+    function rebalance() {
+
+    }
     return {
         root,
         prettyPrint,
         deleteItem,
         includes,
         insert,
-        levelOrderForEach,
+        height,
+        depth,
+        isBalanced,
+        rebalance,
 
     }
 }
