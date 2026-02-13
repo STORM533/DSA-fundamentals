@@ -173,10 +173,21 @@ function Tree(arr) {
         return computeHeight(target);
     }
     function depth(value) {
-        
+        function findDepth(node,value,cdepth){
+            if(!node) return undefined;
+            if(node.data === value){
+                return cdepth;
+            }
+            if(value<node.depth){
+                return findDepth(node.left,value,cdepth+1);
+            }else{
+                return findDepth(node.right,value,cdepth+1);
+            }
+        }
+        return findDepth(this.root,value,0);
     }
     function isBalanced() {
-
+        
     }
     function rebalance() {
 

@@ -11,7 +11,7 @@ console.log("");
 console.log("");
 console.log("");
 test.prettyPrint(test.root);
-console.log(test.height(54));
+console.log(test.depth(6345));
 
 //pretty print is just a function that [prints] 
 //it does not build the tree [the root which calls buildTree does building]
