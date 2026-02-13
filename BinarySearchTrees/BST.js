@@ -173,7 +173,7 @@ function Tree(arr) {
         return computeHeight(target);
     }
     function depth(value) {
-
+        
     }
     function isBalanced() {
 
