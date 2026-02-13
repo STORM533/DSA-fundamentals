@@ -115,7 +115,7 @@ function Tree(arr) {
         if (current.right) queue.push(current.right);
         }
     }
-    function inOrderDorEach(callback) {
+    function inOrderForEach(callback) {
         if(typeof callback !== "function"){
             throw new Error("callback must be provided");
         }
@@ -187,10 +187,30 @@ function Tree(arr) {
         return findDepth(this.root,value,0);
     }
     function isBalanced() {
-        
+        function check(node) {
+            if (!node) return 0; 
+                const leftHeight = check(node.left);
+            if (leftHeight === -1) return -1; 
+                const rightHeight = check(node.right);
+            if (rightHeight === -1) return -1;
+            if (Math.abs(leftHeight - rightHeight) > 1) {
+                return -1;
+            }
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+        return check(this.root) !== -1;
     }
     function rebalance() {
+        const values = [];
 
+        function inorder(node) {
+            if (!node) return;
+                inorder(node.left);
+                values.push(node.data);
+                inorder(node.right);
+            }
+        inorder(this.root);
+        this.root = buildTree(values);
     }
     return {
         root,
@@ -202,7 +222,10 @@ function Tree(arr) {
         depth,
         isBalanced,
         rebalance,
-
+        levelOrderForEach,
+        postOrderForEach,
+        preOrderForEach,
+        inOrderForEach,
     }
 }
 
